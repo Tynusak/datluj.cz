@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 
-const Wordbox = ({ word }) => {
+const Wordbox = ({ word, onFinnish }) => {
   const [lettersLeft, setLettersLeft] = useState(word);
 
   const handleKeyUp = (e) => {
     if (e.key === lettersLeft.charAt(0)) {
-      setLettersLeft(lettersLeft.slice(1));
+      if (lettersLeft.length === 1) {
+        onFinnish();
+      } else {
+        setLettersLeft(lettersLeft.slice(1));
+      }
     }
   };
 
